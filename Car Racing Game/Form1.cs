@@ -11,16 +11,11 @@ namespace Car_Racing_Game
         Random rand = new Random();
         Random carPosition = new Random();
 
-        bool goleft, goright,goup,godown;
+        bool goleft, goright,goup,godown,gameON=true,isOver=false;
         public Form1()
         {
             InitializeComponent();
             ResetGame();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -66,6 +61,29 @@ namespace Car_Racing_Game
             {
                 godown = true;
             }
+            if(e.KeyCode==Keys.P)
+            {
+              
+                gameON = !gameON;
+            }
+
+            if (gameON == true&&isOver==false)
+            {
+                gameTimer.Start();
+                pause.Visible = false;
+
+
+            }
+            if (gameON == false && isOver == false)
+            {
+                gameTimer.Stop();
+                pause.Visible = true;
+                pause.BringToFront();
+            }
+ 
+
+
+
         }
 
         private void keyisup(object sender, KeyEventArgs e)
@@ -90,6 +108,12 @@ namespace Car_Racing_Game
 
         private void gameTimerEvent(object sender, EventArgs e)
         {
+            txtScore.Text = "Score: " + score;
+            score++;
+
+           
+           
+
             //to move the car left
             if (goleft == true && player.Left > 75)
             {
@@ -114,11 +138,11 @@ namespace Car_Racing_Game
             roadTrack1.Top += roadSpeed;
             roadTrack2.Top += roadSpeed;
 
-            if (roadTrack2.Top >= 603)
+            if (roadTrack2.Top > 603)
             {
-                roadTrack2.Top = -603;
+                roadTrack2.Top = -603 ;
             }
-            if (roadTrack1.Top >= 603)
+            if (roadTrack1.Top > 603)
             {
                 roadTrack1.Top = -603;
             }
@@ -135,6 +159,31 @@ namespace Car_Racing_Game
             if (AI2.Top > 610)
             {
                 changeAIcars(AI2);
+            }
+
+            if (player.Bounds.IntersectsWith(AI1.Bounds) || player.Bounds.IntersectsWith(AI2.Bounds))
+            {
+                gameOver();
+            }
+
+            if (score > 40 && score < 500)
+            {
+                award.Image = Properties.Resources.bronze;
+            }
+
+
+            if (score > 500 && score < 2000)
+            {
+                award.Image = Properties.Resources.silver;
+                roadSpeed = 20;
+                trafficSpeed = 22;
+            }
+
+            if (score > 2000)
+            {
+                award.Image = Properties.Resources.gold;
+                trafficSpeed = 27;
+                roadSpeed = 25;
             }
 
         }
@@ -180,11 +229,11 @@ namespace Car_Racing_Game
 
             if ((string)tempCar.Tag == "carLeft")
             {
-                tempCar.Left = carPosition.Next(5, 200);
+                tempCar.Left = carPosition.Next(90, 225);
             }
             if ((string)tempCar.Tag == "carRight")
             {
-                tempCar.Left = carPosition.Next(245, 422);
+                tempCar.Left = carPosition.Next(255, 380);
             }
         }
 
@@ -202,14 +251,25 @@ namespace Car_Racing_Game
 
             btnStart.Enabled = true;
 
+            isOver = true;
 
 
+        }
+
+        private void roadTrack2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
 
         }
 
         private void ResetGame()
         {
-
+            isOver= false;
+            pause.Visible = false;
             btnStart.Enabled = false;
             explosion.Visible = false;
             award.Visible = false;
