@@ -7,6 +7,7 @@ namespace Car_Racing_Game
         int playerSpeed = 12;
         int score;
         int carImage;
+        int HighScore = 0;
 
         Random rand = new Random();
         Random carPosition = new Random();
@@ -253,6 +254,24 @@ namespace Car_Racing_Game
 
             isOver = true;
 
+            if(HighScore<score)
+            {
+                HighScoreTxt.Text = "High Score: " + score-1;
+                HighScore = score;
+            }
+
+
+
+
+        }
+
+        private void txtScore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
 
         }
 

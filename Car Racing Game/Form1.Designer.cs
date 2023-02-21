@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pause = new System.Windows.Forms.PictureBox();
             this.explosion = new System.Windows.Forms.PictureBox();
             this.award = new System.Windows.Forms.PictureBox();
             this.AI2 = new System.Windows.Forms.PictureBox();
@@ -42,8 +43,9 @@
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.txtScore = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
-            this.pause = new System.Windows.Forms.PictureBox();
+            this.HighScoreTxt = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.explosion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.award)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AI2)).BeginInit();
@@ -51,7 +53,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roadTrack2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roadTrack1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pause)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -69,6 +70,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(510, 603);
             this.panel1.TabIndex = 0;
+            // 
+            // pause
+            // 
+            this.pause.Image = ((System.Drawing.Image)(resources.GetObject("pause.Image")));
+            this.pause.Location = new System.Drawing.Point(137, 173);
+            this.pause.Name = "pause";
+            this.pause.Size = new System.Drawing.Size(236, 86);
+            this.pause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pause.TabIndex = 4;
+            this.pause.TabStop = false;
             // 
             // explosion
             // 
@@ -166,13 +177,14 @@
             // txtScore
             // 
             this.txtScore.Font = new System.Drawing.Font("Gadugi", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.txtScore.Location = new System.Drawing.Point(10, 613);
+            this.txtScore.Location = new System.Drawing.Point(260, 613);
             this.txtScore.Name = "txtScore";
             this.txtScore.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtScore.Size = new System.Drawing.Size(509, 29);
+            this.txtScore.Size = new System.Drawing.Size(259, 29);
             this.txtScore.TabIndex = 2;
             this.txtScore.Text = "Score : 0";
             this.txtScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.txtScore.Click += new System.EventHandler(this.txtScore_Click);
             // 
             // btnStart
             // 
@@ -186,21 +198,23 @@
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.restartGame);
             // 
-            // pause
+            // HighScoreTxt
             // 
-            this.pause.Image = ((System.Drawing.Image)(resources.GetObject("pause.Image")));
-            this.pause.Location = new System.Drawing.Point(137, 173);
-            this.pause.Name = "pause";
-            this.pause.Size = new System.Drawing.Size(236, 86);
-            this.pause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pause.TabIndex = 4;
-            this.pause.TabStop = false;
+            this.HighScoreTxt.Font = new System.Drawing.Font("Gadugi", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.HighScoreTxt.Location = new System.Drawing.Point(9, 613);
+            this.HighScoreTxt.Name = "HighScoreTxt";
+            this.HighScoreTxt.Size = new System.Drawing.Size(253, 29);
+            this.HighScoreTxt.TabIndex = 4;
+            this.HighScoreTxt.Text = "HighScore : 0";
+            this.HighScoreTxt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.HighScoreTxt.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(530, 831);
+            this.Controls.Add(this.HighScoreTxt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtScore);
             this.Controls.Add(this.btnStart);
@@ -211,6 +225,7 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyisup);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.explosion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.award)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AI2)).EndInit();
@@ -218,7 +233,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roadTrack2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roadTrack1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pause)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -238,5 +252,6 @@
         private Label txtScore;
         private Button btnStart;
         private PictureBox pause;
+        private Label HighScoreTxt;
     }
 }
